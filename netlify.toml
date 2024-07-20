@@ -1,0 +1,6 @@
+[build]
+  command = "ESLINT_NO_DEV_ERRORS=true next build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
