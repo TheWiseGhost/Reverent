@@ -26,13 +26,14 @@ const HomePage = () => {
   }, []);
 
   const scrollToSection = (id) => {
-    // This function will now only run on the client side
-    const section = document.getElementById(id);
-    if (section && scrollInstanceRef.current) {
-      scrollInstanceRef.current.scrollTo(section, {
-        offset: 100, // Adjust as needed
-        duration: 2, // Adjust duration as needed
-      });
+    if (typeof document !== "undefined") {
+      const section = document.getElementById(id);
+      if (section && scrollInstanceRef.current) {
+        scrollInstanceRef.current.scrollTo(section, {
+          offset: 100, // Adjust as needed
+          duration: 2, // Adjust duration as needed
+        });
+      }
     }
   };
 
