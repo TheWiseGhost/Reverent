@@ -1,5 +1,5 @@
 [build]
-  command = "ESLINT_NO_DEV_ERRORS=true next build"
+  command = "next build"
   publish = ".next"
 
 [[plugins]]
