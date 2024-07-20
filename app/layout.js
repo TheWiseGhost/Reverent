@@ -1,7 +1,26 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Jost, Alata, Montserrat } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: "400",
+});
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jost",
+});
+const alata = Alata({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-alata",
+});
+const mon = Montserrat({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-mon",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +30,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} ${jost.className} ${mon.variable} ${alata.className}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
