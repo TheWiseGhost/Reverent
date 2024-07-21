@@ -1,56 +1,14 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import Hero from "@/components/Hero";
-import React, { useEffect, useRef } from "react";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
-import Timeline from "@/components/Timeline";
-import Benefits from "@/components/Benefits";
-import Form from "@/components/Form";
+const HomePage = dynamic(() => import("@/components/HomePage"), { ssr: false });
+import React from "react";
 
-const HomePage = () => {
-  const scrollRef = useRef(null);
-  const scrollInstanceRef = useRef(null);
-
-  useEffect(() => {
-    // Initialize Locomotive Scroll
-    scrollInstanceRef.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-    });
-
-    // Clean up on unmount
-    return () => {
-      if (scrollInstanceRef.current) scrollInstanceRef.current.destroy();
-    };
-  }, []);
-
-  const scrollToSection = (id) => {
-    if (typeof document !== "undefined") {
-      const section = document.getElementById(id);
-      if (section && scrollInstanceRef.current) {
-        scrollInstanceRef.current.scrollTo(section, {
-          offset: 100, // Adjust as needed
-          duration: 2, // Adjust duration as needed
-        });
-      }
-    }
-  };
-
+const page = () => {
   return (
-    <>
-      <div data-scroll-container id="scroll-container" ref={scrollRef}>
-        <div data-scroll-section>
-          <div className="bg-white">
-            <Hero scrollToSection={scrollToSection} />
-            <Timeline scrollToSection={scrollToSection} />
-            <Benefits scrollToSection={scrollToSection} />
-            <Form />
-          </div>
-        </div>
-      </div>
-    </>
+    <div>
+      <HomePage />
+    </div>
   );
 };
 
-export default HomePage;
+export default page;
